@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 ###########################################################################
-# Installer 4J 0.2
+# Installer 4J 0.3
 # Install/remove Java tools and their dependencies
 #
-# Copyright (C) 2015-2016 Andrey Ponomarenko's ABI Laboratory
+# Copyright (C) 2015-2017 Andrey Ponomarenko's ABI Laboratory
 #
 # Written by Andrey Ponomarenko
 #
@@ -33,7 +33,7 @@ use File::Temp qw(tempdir);
 use File::Basename qw(basename);
 use Cwd qw(cwd);
 
-my $TOOL_VERSION = "0.2";
+my $TOOL_VERSION = "0.3";
 my $ORIG_DIR = cwd();
 my $TMP_DIR = tempdir(CLEANUP=>1);
 
@@ -48,7 +48,7 @@ my %DEPS = (
 my %VER = (
     "japi-tracker"            => "1.1",
     "japi-monitor"            => "1.1",
-    "japi-compliance-checker" => "1.8",
+    "japi-compliance-checker" => "2.1",
     "pkgdiff"                 => "1.7.2"
 );
 
