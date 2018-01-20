@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 ###########################################################################
-# Installer 4J 0.4
+# Installer 4J 0.5
 # Install/remove Java tools and their dependencies
 #
-# Copyright (C) 2015-2017 Andrey Ponomarenko's ABI Laboratory
+# Copyright (C) 2015-2018 Andrey Ponomarenko's ABI Laboratory
 #
 # Written by Andrey Ponomarenko
 #
@@ -12,18 +12,20 @@
 #  Perl 5 (5.8 or newer)
 #  cURL
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License or the GNU Lesser
-# General Public License as published by the Free Software Foundation.
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This library is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# and the GNU Lesser General Public License along with this program.
-# If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# MA  02110-1301  USA.
 ########################################################################### 
 use strict;
 use Getopt::Long;
@@ -33,7 +35,7 @@ use File::Temp qw(tempdir);
 use File::Basename qw(basename);
 use Cwd qw(cwd);
 
-my $TOOL_VERSION = "0.4";
+my $TOOL_VERSION = "0.5";
 my $ORIG_DIR = cwd();
 my $TMP_DIR = tempdir(CLEANUP=>1);
 
@@ -46,9 +48,9 @@ my %DEPS = (
 );
 
 my %VER = (
-    "japi-tracker"            => "1.2",
-    "japi-monitor"            => "1.2",
-    "japi-compliance-checker" => "2.3",
+    "japi-tracker"            => "1.3",
+    "japi-monitor"            => "1.3",
+    "japi-compliance-checker" => "2.4",
     "pkgdiff"                 => "1.7.2"
 );
 
@@ -196,16 +198,16 @@ sub scenario()
         exit(1);
     }
     
-    if(not -d $Prefix)
+    if($Install)
     {
-        print STDERR "ERROR: you should create prefix directory first\n";
-        exit(1);
-    }
-    
-    if(not -w $Prefix)
-    {
-        print STDERR "ERROR: you should be root\n";
-        exit(1);
+        if(not -d $Prefix) {
+            mkpath($Prefix);
+        }
+        elsif(not -w $Prefix)
+        {
+            print STDERR "ERROR: you should be root\n";
+            exit(1);
+        }
     }
     
     if(not check_Cmd("curl"))
