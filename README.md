@@ -4,7 +4,7 @@ Installer 4J
 Install/remove Java tools and their dependencies:
 
 | TOOL                    | VERSION | URL                                            |
-|-------------------------|----------------------------------------------------------|
+|-------------------------|---------|------------------------------------------------|
 | japi-tracker            | 1.3     | https://github.com/lvc/japi-tracker            |
 | japi-monitor            | 1.3     | https://github.com/lvc/japi-monitor            |
 | japi-compliance-checker | 2.4     | https://github.com/lvc/japi-compliance-checker |
